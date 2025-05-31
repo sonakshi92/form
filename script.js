@@ -19,7 +19,7 @@ $('#submitbtn').click(function(){
         if(isEmail($("#email").val()) == false){
             errormsg += "<p> Email ID is not valid </p>";
         }
-        if($.isNumeric($("#phone").val()) == false && $("#phone").val().length !=10){
+        if($.isNumeric($("#phone").val()) == false || $("#phone").val().length !=10){
             errormsg += "<p>Phone No. is not valid. It should have 10 digits.</p>";
         }
         if (isPassword($("#password").val()) == false) {
