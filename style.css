@@ -42,6 +42,7 @@ input{
     border-radius: 10%;
     display: none;
     margin-bottom: 10px;
+    padding: 10px;
 }
 
 #success{
@@ -51,6 +52,7 @@ input{
     border-radius: 10%;
     display: none;
     margin-bottom: 10px;
+    padding: 10px;
 }
 .required{
     color: red;
