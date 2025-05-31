@@ -12,6 +12,7 @@ function isPassword(password) {
 
 $('#submitbtn').click(function(){
     var errormsg ="";
+    $("#success").hide();
 
     if($("#email").val() == '' || $("#phone").val() == '' || $("#password").val() == '' || $("#confPass").val() == ''){
         errormsg += "<p> Enter all required fields </p>";
@@ -32,6 +33,7 @@ $('#submitbtn').click(function(){
     
     if(errormsg == ""){
         $("#success").html("You are Registered!").show();
+        $("#error").hide();
     }else{
         $("#error").html(errormsg).show();
     }
