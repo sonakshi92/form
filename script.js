@@ -40,20 +40,42 @@ $('#submitbtn').click(function(){
 });
 
 // Show Password
-$("#showPass").hover(
-    function() {
-      $("#password").attr("type", "text");
-    },
-    function() {
-      $("#password").attr("type", "password");
-    }
-);
+$("#showPass").click(function() {
+    const passInput = $("#password");
+    const isPassword = passInput.attr("type") === "password";
+    passInput.attr("type", isPassword ? "text" : "password");
+    $(this).text(isPassword ? "Hide" : "Show");
+  });
+  
+  $("#showConPass").click(function() {
+    const confPassInput = $("#confPass");
+    const isPassword = confPassInput.attr("type") === "password";
+    confPassInput.attr("type", isPassword ? "text" : "password");
+    $(this).text(isPassword ? "Hide" : "Show");
+  });
+  
 
-$("#showConPass").hover(
-    function() {
-      $("#confPass").attr("type", "text");
-    },
-    function() {
-      $("#confPass").attr("type", "password");
+  //Live Validation
+  function validatePhoneNumber() {
+    const phoneVal = $("#phone").val();
+    const isValid = phoneVal.length === 10;
+  
+    if (phoneVal === "") {
+      $("#phoneError").remove();
+    } else if (!isValid) {
+      if ($("#phoneError").length === 0) {
+        $('<p id="phoneError" style="color: red; font-size: 0.9em;">Phone number must be exactly 10 digits.</p>').insertAfter("#phone");
+      }
+    } else {
+      $("#phoneError").remove();
     }
-);
+  }
+  
+  $("#phone").on("input", function() {
+    let val = $(this).val();
+    val = val.replace(/\D/g, '');
+    if (val.length > 10) val = val.substring(0, 10);
+    $(this).val(val);
+    validatePhoneNumber();
+  });
+  
