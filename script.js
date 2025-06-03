@@ -1,22 +1,28 @@
 
 function isEmail(email) {
-    var regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return regex.test(email);
 }
 
 function isPassword(password) {
-    var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
     return passwordRegex.test(password);
 }
 
 
 $('#submitbtn').click(function(){
-    var errormsg ="";
+    let errormsg ="";
     $("#success").hide();
 
-    if($("#email").val() == '' || $("#phone").val() == '' || $("#password").val() == '' || $("#confPass").val() == ''){
+    if($("#name").val() == '' || $("#email").val() == '' || $("#phone").val() == '' || $("#password").val() == '' || $("#confPass").val() == ''){
         errormsg += "<p> Enter all required fields </p>";
     }else{
+        if ($("#age").val() !== '') {
+          const ageNum = $("#age").val();
+          if ($.isNumeric(ageNum) == false || ageNum < 0 || ageNum > 200) {
+              errormsg += "<p>Age must be a number between 0 and 200</p>";
+          }
+        }
         if(isEmail($("#email").val()) == false){
             errormsg += "<p> Email ID is not valid </p>";
         }
